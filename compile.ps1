@@ -1,5 +1,5 @@
-$sourceFiles = @("checkDatabase.c", "file2.c", "file3.c")
-$outputFiles = @("bin\checkDatabase.exe", "output2.exe", "output3.exe")
+$sourceFiles = @("checkDatabase.c", "createKioskStock.c", "dailyUpdate.c","displayKioskDatabase.c","menu.c","sellItem.c")
+$outputFiles = @("bin\checkDatabase.exe", "bin\createKioskStock.exe", "bin\dailyUpdate.exe","bin\displayKioskDatabase.exe","bin\menu.exe","bin\sellItem.exe")
 
 $gccCommand = "gcc"
 $gccArgs = "-o"
