@@ -13,11 +13,20 @@ struct Item {
     double sellingPrice;
 };
 
+	
+int isItemCodeUnique(const struct Item kioskStock[], int numItems, const char* code) {
+    for (int i = 0; i < numItems; i++) {
+        if (strcmp(kioskStock[i].code, code) == 0) {
+            return 0;  // Item code already exists
+        }
+    }
+    return 1;  // Item code is unique
+}
 
 
 void createKioskStock() {
     system("cls");
-    // struct Item kioskStock[MAX_ITEMS];
+    struct Item kioskStock[MAX_ITEMS];
     int numItems = 0;
     char choice;
 
@@ -41,7 +50,11 @@ void createKioskStock() {
 
         printf("Enter item code: ");
         scanf("%s", newItem.code);
-
+// Check if item code already exists
+        if (!isItemCodeUnique(kioskStock, numItems, newItem.code)) {
+            printf("Item code already exists. Please enter a unique item code.\n");
+            continue;
+        }
         printf("Enter item name: ");
         scanf(" %[^\n]s", newItem.name);
 
@@ -55,7 +68,7 @@ void createKioskStock() {
         scanf("%lf", &newItem.costPrice);
 
         newItem.sellingPrice = newItem.costPrice * 1.35; // 35% markup
-
+        kioskStock[numItems] = newItem;
         fwrite(&newItem, sizeof(struct Item), 1, file);
 
         numItems++;
