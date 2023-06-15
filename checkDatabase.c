@@ -22,13 +22,13 @@ void displayKioskDatabase() {
         return;
     }
 
-    printf("Kiosk Stock Database:\n");
+    printf("Stock Low:\n");
     printf("----------------------------------------\n");
     printf("Code    Name            Stock   Low Limit       Cost Price(RM)      Selling Price(RM)\n");
     printf("----------------------------------------\n");
 
     while (fread(&item, sizeof(struct Item), 1, file) == 1) {
-        if (strcmp(item.code, "") != 0) {
+        if (strcmp(item.code, "") != 0 && item.stock <= item.lowLimit) {
             printf("%-6s  %-12s %5d   %5d        %10.2lf          %10.2lf\n", item.code, item.name, item.stock, item.lowLimit, item.costPrice, item.sellingPrice);
         }
     }
@@ -41,7 +41,7 @@ void displayKioskDatabase() {
 void updateKioskStock() {
     system("cls");
     displayKioskDatabase();
-    
+
     char code[6];
     int quantity;
 
@@ -82,11 +82,25 @@ void updateKioskStock() {
     }
 
     printf("Kiosk stock updated successfully!\n");
+    getchar();
 }
 
 int main() {
     system("cls");
-    updateKioskStock();
+    displayKioskDatabase();
+
+    char choice;
+
+    do {
+        printf("Do you want to update the kiosk stock? (Y/N): ");
+        scanf(" %c", &choice);
+
+        if (choice == 'Y' || choice == 'y') {
+            updateKioskStock();
+            printf("Do you want to add more items? (Y/N): ");
+        scanf(" %c", &choice);
+        }
+    } while (choice == 'Y' || choice == 'y');
     getchar();
     return 0;
 }
