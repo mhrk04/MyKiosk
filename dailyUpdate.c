@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#define MAX_ITEMS 20
 
 struct Item {
     char code[6];
@@ -26,15 +27,23 @@ void displaySoldItems() {
         return;
     }
 
-    struct Item currentItem;
+    struct Item soldItems[MAX_ITEMS];
+    int numItems = 0;
 
-    while (fread(&currentItem, sizeof(struct Item), 1, transactionFile)) {
-        printf("%-6s | %-8d\n", currentItem.code, currentItem.quantity);
-        printf("------------------------\n");
+    // Read all the sold items into an array
+    while (fread(&soldItems[numItems], sizeof(struct Item), 1, transactionFile)) {
+        numItems++;
     }
 
     fclose(transactionFile);
+
+    // Print the sold items in reverse order (latest transaction at the top)
+    for (int i = numItems - 1; i >= 0; i--) {
+        printf("%-6s | %-8d\n", soldItems[i].code, soldItems[i].quantity);
+        printf("------------------------\n");
+    }
 }
+
 
 int main() {
   system("cls");
