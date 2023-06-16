@@ -97,8 +97,8 @@ int main() {
 
         if (choice == 'Y' || choice == 'y') {
             updateKioskStock();
-            printf("Do you want to update more items? (Y/N): ");
-        scanf(" %c", &choice);
+        //     printf("Do you want to update more items? (Y/N): ");
+        // scanf(" %c", &choice);
         }
     } while (choice == 'Y' || choice == 'y');
     getchar();
