@@ -36,7 +36,7 @@ void createKioskStock() {
         return;
     }
 
-    printf("Creating Kiosk Stock:\n");
+    printf("Creating Kiosk Stock(20 MAX):\n");
 
     do {
         if (numItems == MAX_ITEMS) {
