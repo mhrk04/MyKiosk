@@ -1,2 +1,2 @@
 # MyKiosk
-A group project for """IED12803 - PROGRAMMING APPLICATION"""
+A group project for ***IED12803 - PROGRAMMING APPLICATION***
